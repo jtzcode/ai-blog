@@ -74,5 +74,5 @@ Comments are wired but intentionally disabled until you fill in the public Giscu
    PUBLIC_GISCUS_CATEGORY_ID=...
    ```
 
-4. In GitHub, open **Settings -> Secrets and variables -> Actions -> Variables** and add the same four `PUBLIC_GISCUS_*` names for production builds.
+4. In GitHub, add the same four `PUBLIC_GISCUS_*` names for production builds. Repository-level **Actions Variables** work, and the workflow also reads them from the `github-pages` environment if you store them there instead.
 5. Push to `main` again or re-run the deploy workflow. Comments will appear below each post after the new build finishes.
