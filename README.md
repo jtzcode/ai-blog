@@ -64,6 +64,15 @@ A push to `main` triggers GitHub Actions and redeploys the site automatically.
 Comments are wired but intentionally disabled until you fill in the public Giscus values.
 
 1. Enable **GitHub Discussions** in the repository.
-2. Create or choose a discussion category.
-3. Copy `.env.example` to `.env` locally and fill the values.
-4. Add the same values as repository variables or secrets in GitHub if you want comments in production.
+2. Create or choose a discussion category in Giscus and copy the generated values.
+3. Create a local `.env` file in the repository root (next to `package.json`) and fill these values:
+
+   ```env
+   PUBLIC_GISCUS_REPO=jtzcode/ai-blog
+   PUBLIC_GISCUS_REPO_ID=...
+   PUBLIC_GISCUS_CATEGORY=General
+   PUBLIC_GISCUS_CATEGORY_ID=...
+   ```
+
+4. In GitHub, open **Settings -> Secrets and variables -> Actions -> Variables** and add the same four `PUBLIC_GISCUS_*` names for production builds.
+5. Push to `main` again or re-run the deploy workflow. Comments will appear below each post after the new build finishes.
