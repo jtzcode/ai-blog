@@ -3,7 +3,7 @@ export const SITE = {
   author: "jtzcode",
   profile: "https://github.com/jtzcode",
   desc: "Notes on software, AI, and systems in English and 中文.",
-  title: "jtzcode",
+  title: "概念的价值",
   ogImage: "astropaper-og.jpg",
   lightAndDarkMode: true,
   postPerIndex: 4,
