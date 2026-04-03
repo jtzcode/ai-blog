@@ -1,4 +1,8 @@
-const baseUrl = new URL(import.meta.env.BASE_URL, "https://example.com");
+const rawBasePath = import.meta.env.BASE_URL || "/";
+const normalizedBasePath = rawBasePath.endsWith("/")
+  ? rawBasePath
+  : `${rawBasePath}/`;
+const baseUrl = new URL(normalizedBasePath, "https://example.com");
 
 export function getRelativeUrl(path = "/") {
   const normalizedPath = path.startsWith("/") ? path.slice(1) : path;
