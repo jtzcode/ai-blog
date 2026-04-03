@@ -1,0 +1,30 @@
+---
+import { LOCALES } from "@/config";
+import { getRelativeUrl } from "@/utils/getRelativeUrl";
+
+const { pathname } = Astro.url;
+const links = LOCALES.map(locale => ({
+  ...locale,
+  href: getRelativeUrl(locale.href),
+}));
+---
+
+<nav aria-label="Language switcher" class="flex flex-wrap gap-2 text-sm">
+  {
+    links.map(locale => {
+      const active = pathname.startsWith(locale.href);
+      return (
+        <a
+          href={locale.href}
+          aria-current={active ? "page" : undefined}
+          class:list={[
+            "rounded border border-dashed px-3 py-1 transition hover:bg-muted",
+            active && "bg-muted font-medium",
+          ]}
+        >
+          {locale.label}
+        </a>
+      );
+    })
+  }
+</nav>

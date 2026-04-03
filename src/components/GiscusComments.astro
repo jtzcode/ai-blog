@@ -1,0 +1,43 @@
+---
+import type { SiteLocale } from "@/config";
+
+interface Props {
+  lang: SiteLocale;
+}
+
+const { lang } = Astro.props;
+
+const repo = import.meta.env.PUBLIC_GISCUS_REPO;
+const repoId = import.meta.env.PUBLIC_GISCUS_REPO_ID;
+const category = import.meta.env.PUBLIC_GISCUS_CATEGORY;
+const categoryId = import.meta.env.PUBLIC_GISCUS_CATEGORY_ID;
+
+const enabled = Boolean(repo && repoId && category && categoryId);
+const heading = lang === "zh" ? "讨论" : "Discussion";
+const giscusLang = lang === "zh" ? "zh-CN" : "en";
+---
+
+{
+  enabled && (
+    <section class="mt-12" data-pagefind-ignore>
+      <h2 class="mb-4 text-lg font-semibold">{heading}</h2>
+      <script
+        is:inline
+        src="https://giscus.app/client.js"
+        data-repo={repo}
+        data-repo-id={repoId}
+        data-category={category}
+        data-category-id={categoryId}
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang={giscusLang}
+        crossorigin="anonymous"
+        async
+      />
+    </section>
+  )
+}

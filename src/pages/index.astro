@@ -1,0 +1,47 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import LinkButton from "@/components/LinkButton.astro";
+import { SITE } from "@/config";
+import { getRelativeUrl } from "@/utils/getRelativeUrl";
+
+const englishUrl = getRelativeUrl("/en/");
+const chineseUrl = getRelativeUrl("/zh/");
+const postsUrl = getRelativeUrl("/posts/");
+const searchUrl = getRelativeUrl("/search/");
+---
+
+<Layout title={`${SITE.title} | Home`} description={SITE.desc}>
+  <Header />
+  <main id="main-content" class="app-layout py-16 sm:py-24">
+    <p class="text-sm font-medium tracking-[0.25em] text-accent uppercase">
+      GitHub Pages blog
+    </p>
+    <h1 class="mt-4 text-4xl font-bold sm:text-5xl">{SITE.title}</h1>
+    <p class="mt-6 max-w-2xl text-lg leading-8 opacity-90">{SITE.desc}</p>
+
+    <div class="mt-10 grid gap-4 sm:grid-cols-2">
+      <a
+        href={englishUrl}
+        class="rounded-xl border border-border p-6 transition hover:border-accent hover:bg-muted/40"
+      >
+        <h2 class="text-2xl font-semibold text-accent">English</h2>
+        <p class="mt-2 opacity-80">Articles and notes in English.</p>
+      </a>
+      <a
+        href={chineseUrl}
+        class="rounded-xl border border-border p-6 transition hover:border-accent hover:bg-muted/40"
+      >
+        <h2 class="text-2xl font-semibold text-accent">中文</h2>
+        <p class="mt-2 opacity-80">中文文章、技术笔记和构建记录。</p>
+      </a>
+    </div>
+
+    <div class="mt-10 flex flex-wrap gap-4">
+      <LinkButton href={postsUrl}>Browse all posts</LinkButton>
+      <LinkButton href={searchUrl}>Search the blog</LinkButton>
+    </div>
+  </main>
+  <Footer />
+</Layout>

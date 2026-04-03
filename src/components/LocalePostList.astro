@@ -1,0 +1,25 @@
+---
+import type { CollectionEntry } from "astro:content";
+import Card from "@/components/Card.astro";
+
+interface Props {
+  posts: CollectionEntry<"blog">[];
+  emptyMessage?: string;
+}
+
+const { posts, emptyMessage = "Posts will appear here soon." } = Astro.props;
+---
+
+{
+  posts.length > 0 ? (
+    <ul>
+      {posts.map(post => (
+        <Card variant="h3" {...post} />
+      ))}
+    </ul>
+  ) : (
+    <p class="rounded border border-dashed border-border p-4 text-sm opacity-80">
+      {emptyMessage}
+    </p>
+  )
+}

@@ -1,0 +1,27 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Main from "@/layouts/Main.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import LanguageSwitcher from "@/components/LanguageSwitcher.astro";
+import LocalePostList from "@/components/LocalePostList.astro";
+import { getLocalePosts } from "@/utils/getLocalePosts";
+import { SITE } from "@/config";
+
+const posts = await getLocalePosts("en");
+---
+
+<Layout
+  title={`English | ${SITE.title}`}
+  description="Posts and notes in English."
+>
+  <Header />
+  <Main pageTitle="English" pageDesc="Posts and notes in English.">
+    <LanguageSwitcher />
+    <LocalePostList
+      posts={posts}
+      emptyMessage="English posts will appear here soon."
+    />
+  </Main>
+  <Footer />
+</Layout>

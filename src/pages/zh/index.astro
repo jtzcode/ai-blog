@@ -1,0 +1,21 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Main from "@/layouts/Main.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import LanguageSwitcher from "@/components/LanguageSwitcher.astro";
+import LocalePostList from "@/components/LocalePostList.astro";
+import { getLocalePosts } from "@/utils/getLocalePosts";
+import { SITE } from "@/config";
+
+const posts = await getLocalePosts("zh");
+---
+
+<Layout title={`中文 | ${SITE.title}`} description="中文文章与技术笔记。">
+  <Header />
+  <Main pageTitle="中文" pageDesc="中文文章与技术笔记。">
+    <LanguageSwitcher />
+    <LocalePostList posts={posts} emptyMessage="中文文章很快会出现在这里。" />
+  </Main>
+  <Footer />
+</Layout>
