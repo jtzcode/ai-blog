@@ -118,6 +118,12 @@ const nextPost =
       >
       <EditPost {hideEditPost} {post} class="max-sm:hidden" />
     </div>
+    <div id="busuanzi-wrap" class="my-1 flex items-center gap-1 text-sm opacity-70" style="display:none!important">
+      <span id="busuanzi_container_page_pv">
+        {lang === "zh" ? "阅读 " : "Views: "}
+        <span id="busuanzi_value_page_pv">...</span>
+      </span>
+    </div>
     <article
       id="article"
       class="app-prose mt-8 w-full max-w-app prose-pre:bg-(--shiki-light-bg) dark:prose-pre:bg-(--shiki-dark-bg)"
@@ -172,6 +178,45 @@ const nextPost =
   </main>
   <Footer />
 </Layout>
+
+<script is:inline data-astro-rerun>
+  // Busuanzi read count with fallback
+  (function () {
+    const wrap = document.getElementById("busuanzi-wrap");
+    if (!wrap) return;
+
+    const timeout = setTimeout(() => {
+      // Service didn't respond in time — keep hidden
+    }, 4000);
+
+    const script = document.createElement("script");
+    script.src =
+      "https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js";
+    script.async = true;
+    script.referrerPolicy = "no-referrer-when-downgrade";
+
+    script.onload = () => {
+      clearTimeout(timeout);
+      // Wait for busuanzi to populate the span
+      const check = setInterval(() => {
+        const val = document.getElementById("busuanzi_value_page_pv");
+        if (val && val.textContent && val.textContent.trim() !== "...") {
+          clearInterval(check);
+          wrap.style.removeProperty("display");
+        }
+      }, 200);
+      // Give up after 4s
+      setTimeout(() => clearInterval(check), 4000);
+    };
+
+    script.onerror = () => {
+      clearTimeout(timeout);
+      // Stay hidden on error
+    };
+
+    document.head.appendChild(script);
+  })();
+</script>
 
 <script is:inline data-astro-rerun>
   function createProgressBar() {
