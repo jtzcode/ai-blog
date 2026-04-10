@@ -41,7 +41,6 @@ export default defineConfig({
     },
   },
   vite: {
-    // @ts-expect-error Astro 5 still requires this Vite workaround
     plugins: [tailwindcss()],
     optimizeDeps: {
       exclude: ["@resvg/resvg-js"],
