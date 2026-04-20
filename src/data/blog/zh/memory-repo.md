@@ -20,7 +20,9 @@ draft: false
 
 那这部分经验是否可以通过 MCP 工具上传到某个 Memory Serice，并以某种形式（数据库、知识图谱等）持久化到一个存储中。其他成员通过 MCP 工具可以获取这些记忆，并注入到自己的 agent 上下文中？
 
-我称之为 `Memory Repo`。
+另外，相关 memory MCP 的配置跟随 code 一起 track，这样同样 code repo 的开发者可以随时共享 agent 记忆。
+
+我称之为 `Memory Repository`。
 
 如果细化，需要考虑几个问题：
 
