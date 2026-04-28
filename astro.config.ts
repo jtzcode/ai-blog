@@ -4,6 +4,7 @@ import sitemap from "@astrojs/sitemap";
 import remarkToc from "remark-toc";
 import remarkCollapse from "remark-collapse";
 import remarkMath from "remark-math";
+import remarkGfm from "remark-gfm";
 import rehypeKatex from "rehype-katex";
 import {
   transformerNotationDiff,
@@ -23,6 +24,7 @@ export default defineConfig({
   ],
   markdown: {
     remarkPlugins: [
+      remarkGfm,
       remarkMath,
       remarkToc,
       [remarkCollapse, { test: "Table of contents" }],

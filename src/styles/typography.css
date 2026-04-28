@@ -89,6 +89,27 @@
     pre {
       @apply focus-visible:border-transparent focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-dashed;
     }
+
+    /* ===== Footnotes ===== */
+    [data-footnote-ref] {
+      @apply text-accent no-underline text-[0.75em] align-super font-semibold;
+    }
+
+    .footnotes {
+      @apply mt-8 border-t border-border pt-4 text-sm opacity-80;
+    }
+
+    .footnotes ol {
+      @apply list-decimal pl-6;
+    }
+
+    .footnotes li {
+      @apply my-1;
+    }
+
+    [data-footnote-backref] {
+      @apply text-accent no-underline;
+    }
   }
 
   /* ===== Code Blocks & Syntax Highlighting ===== */
